@@ -25,12 +25,9 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-import it.prova.raccoltafilmspringmvc.dto.FilmDTO;
 import it.prova.raccoltafilmspringmvc.dto.RegistaDTO;
 import it.prova.raccoltafilmspringmvc.exception.RegistaConFilmException;
-import it.prova.raccoltafilmspringmvc.model.Film;
 import it.prova.raccoltafilmspringmvc.model.Regista;
-import it.prova.raccoltafilmspringmvc.service.FilmService;
 import it.prova.raccoltafilmspringmvc.service.RegistaService;
 
 @Controller
@@ -40,8 +37,6 @@ public class RegistaController {
 	@Autowired
 	private RegistaService registaService;
 	
-	@Autowired
-	private FilmService filmService;
 
 	@GetMapping
 	public ModelAndView listAllRegisti() {
@@ -138,17 +133,17 @@ public class RegistaController {
 		return "redirect:/regista";
 	}
 
-	@GetMapping("/listafilm/{idRegista}")
-	public String listaFilm (Long idRegista, Model model) {
-		List <Film> filmDelRegista = filmService.listaFilmDiUnRegista(idRegista);
-		model.addAttribute("film_list_attribute", FilmDTO.createFilmDTOListFromModelList(filmDelRegista, true));
-		return "regista/listafilm";
-	}
+//	@GetMapping("/listafilm/{idRegista}")
+//	public String listaFilm (Long idRegista, Model model) {
+//		List <Film> filmDelRegista = filmService.listaFilmDiUnRegista(idRegista);
+//		model.addAttribute("film_list_attribute", FilmDTO.createFilmDTOListFromModelList(filmDelRegista, true));
+//		return "regista/listafilm";
+//	}
 	
-	@PostMapping("/deleteall")
-	public String eliminaTuttiIfilm(Long idRegista, RedirectAttributes redirectAttrs) {
-		//chi devo richiamare????
-	}
+//	@PostMapping("/deleteall")
+//	public String eliminaTuttiIfilm(Long idRegista, RedirectAttributes redirectAttrs) {
+//		//chi devo richiamare????
+//	}
 	
 	
 	@GetMapping(value = "/searchRegistiAjax", produces = { MediaType.APPLICATION_JSON_VALUE })
